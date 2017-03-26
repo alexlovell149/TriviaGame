@@ -38,74 +38,7 @@ var questions =[{
 },]
 
 
-var currentQuestion = 0;
-var score = 0;
-var totalQuestions = questions.length;
 
-function loadQuestion (questionIndex) {
-	var q = questions[questionIndex];
-	$("#question").html(q["question"]);
-	$("#opt1").html(q["option1"]);
-	$("#opt2").html(q["option2"]);
-	$("#opt3").html(q["option3"]);
-	$("#opt4").html(q["option4"]);
-
-
-	console.log(q);
-};
-
-
-
-
-function loadNextQuestion (questionIndex) {
-	var selectedOption = $('input[type=radio]:checked');
-	$(!"<input>").on("click", function() {
-		event.preventDefault()
-		alert('You have to choose one!');
-
-
-	
-	});
-
-	var answer = $(this).val();
-	if (questions[currentQuestion].answer==answer){
-		score +=1;
-	}
-	selectedOption.checked = false;
-	currentQuestion++;
-	if(currentQuestion == totalQuestions -1){
-		$("#nextButton").html('Finish');
-	}
-	if(currentQuestion == totalQuestions){
-		$("#container1").html();
-		$("#result").html();
-		$("#result").html('Your score: ' + score);
-	
-	}
-	console.log(currentQuestion);
-}
-
-var number = 20;
-var intervalId;
-$("#nextButton").on("click", run);
-
-function run() {
-	intervalId = setInterval(decrement, 1000);
-}
-
-function decrement() {
-	number--;
-
-	$("#timer").html("<h2>" + "Time Left: " + number + "</h2>");
-	if (number === 0) {
-
-			clearTimeout(intervalId);
-			loadNextQuestion().fadeIn
-
-
-		alert("Time Up!")
-	}
-}
 
 
 
